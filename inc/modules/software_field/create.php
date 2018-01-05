@@ -3,10 +3,10 @@ if(isset($_POST['save'])){
 
     $field_name = $_POST['field_name'];
     $expertise = $_POST['expertise'];
-
-
+ 
+    
 $sql="INSERT INTO software_field (expertise, field_name)
-VALUES ('$field_name','$expertise')";
+VALUES ('$expertise','$field_name')";
  $result=mysqli_query($conn,$sql);
 if($result){
 
@@ -17,7 +17,21 @@ if($result){
     </div>
     <?php
 }else{
+
+    $check = mysqli_real_escape_string($conn,$field_name);
+    $sql = "SELECT field_name FROM software_field WHERE field_name=$check";
+    $result = mysqli_query($conn,$sql);
+   
+    if(mysqli_num_rows($result)>0){
 ?>
+        <div class="alert alert-danger">
+        <strong>Error!</strong> field name already exists
+        <a href="./?module=software_field&page=create">click here</a> to retry.
+    </div>
+
+<?php
+}else{
+    ?>
     <div class="alert alert-danger">
         <strong>Error!</strong> error in creating software_field
         <a href="./?module=software_field&page=create">click here</a> to retry.
@@ -25,6 +39,8 @@ if($result){
     <?php
 }
 die;
+}
+
 }
 
 ?>

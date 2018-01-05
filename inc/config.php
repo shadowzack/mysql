@@ -55,7 +55,8 @@ if(!$query)
 $sql="CREATE TABLE IF NOT EXISTS software_field (
     id INT(60) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
     field_name VARCHAR(30) NOT NULL,
-    expertise VARCHAR(30) NOT NULL )";
+    expertise VARCHAR(30) NOT NULL,
+    UNIQUE (field_name) )";
 
 $query=mysqli_query($conn,$sql);
 if(!$query)
