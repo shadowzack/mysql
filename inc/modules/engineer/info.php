@@ -41,6 +41,7 @@ if($count>0){
                         <th>Age</th>
                         <th>birthdate</th>
                         <th>address</th>
+                        <th>field name</th>
                         <th>Phones</th>
                     </tr>
                 </thead>
@@ -62,6 +63,21 @@ if($count>0){
                             <td>
                                 <?=$rows[0]['addresss'];?>
                             </td>
+
+                            <?php
+                            $id=$tmpid;
+                            $sql2="SELECT * FROM has WHERE id=$id";
+                            $res2 = mysqli_query($conn, $sql2);
+                            
+                            if($res2){
+                              
+                             $rows2=mysqli_fetch_assoc($res2);
+                            ?>
+                             <td>
+                              <?=$rows2['field_name']; ?>
+                            </td>
+                            <?php
+                         }?>
 
                             <?php
                             

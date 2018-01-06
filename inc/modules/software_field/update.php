@@ -6,10 +6,18 @@ if(isset($_POST['update_btn'])){
     
     $field_name = $_POST['field_name'];
     $expertise = $_POST['expertise'];
-
-
+    
+   /* mysqli_query($conn,'SET foreign_key_checks = 0');
+$sql="UPDATE has SET field_name='$field_name' WHERE id='{$_GET['id']}'";
+$res=mysqli_query($conn,$sql);
+if ($res) {
+ 
+   // mysqli_query($conn,'SET foreign_key_checks = 1');*/
 $sql="UPDATE  software_field SET field_name='$field_name', expertise='$expertise' WHERE software_field.id='{$_GET['id']}'";
  $result=mysqli_query($conn,$sql);
+
+ 
+  
 if($result){
 
 ?>

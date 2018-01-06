@@ -5,7 +5,12 @@ $sql="DELETE FROM phone WHERE id=$id";
 $result=mysqli_query($conn,$sql);
 if(!$result)
       echo "Error creating table: " . mysqli_error($conn)."<br>";
-      
+
+$sql="DELETE FROM has WHERE id=$id";
+$result=mysqli_query($conn,$sql);
+if(!$result)
+      echo "Error creating table: " . mysqli_error($conn)."<br>";
+
 $sql="DELETE FROM engineer WHERE id=$id";
  $result=mysqli_query($conn,$sql);
  if($result)

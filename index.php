@@ -42,25 +42,10 @@ include('inc/init.php');
                     <li>
                         <a href="./?module=software_field&page=list">software field</a>
                     </li>
-                    <!--<li>
-                        <a href="./?module=courses&page=list">Courses</a>
-                    </li>
                     <li>
-                        <a href="./?module=professors&page=list">Professors</a>
+                        <a href="./?module=projects&page=list">projects</a>
                     </li>
-
-
-                    <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="./?module=Semster&page=list">Semesters</a>
-                      </li>
-                      <li>
-                          <a href="./?module=Classes&page=list">Classes</a>
-                      </li>
-
-                    </ul>
-                  </li>-->
+               
                 </ul>
             </div>
         </div>

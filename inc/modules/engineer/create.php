@@ -8,7 +8,7 @@ if(isset($_POST['save'])){
  
    // $phone=$_POST['phone'];
     $birthdate=$_POST['birthdate'];
-    
+    $field_name=$_POST['field_name'];
     $date=$birthdate;
     $date = explode("/", $date);
     $date = $date[1].'-'.$date[0].'-'.$date[2];
@@ -18,11 +18,15 @@ $difference = $now->diff($dob);
 $age = $difference->y;
 
 
-$sql="INSERT INTO engineer (firstname, lastname, addresss,age,birthdate,field_id)
-VALUES ('$firstname','$lastname','$address','$age','$birthdate','$age')";
+
+$sql="INSERT INTO engineer (firstname, lastname, addresss,age,birthdate)
+VALUES ('$firstname','$lastname','$address','$age','$birthdate')";
  $result=mysqli_query($conn,$sql);
 if($result){
-
+    $id = mysqli_insert_id($conn);
+$sql="INSERT INTO has(id,field_name) VALUES('$id','$field_name')";
+$res=mysqli_query($conn,$sql);
+if($res){
 ?>
     <div class="alert alert-success">
         <strong>Success!</strong> engineer successfully created
@@ -30,6 +34,7 @@ if($result){
     </div>
     <?php
 }else{
+
 ?>
     <div class="alert alert-danger">
         <strong>Error!</strong> error in creating engineer
@@ -38,6 +43,7 @@ if($result){
     <?php
 }
 die;
+}
 }
 
 ?>
@@ -65,11 +71,11 @@ die;
                     <label for="age">age:</label>
                     <input type="text" name="age" step="any" class="form-control" required>
                 </div>-->
-                <!--
+                
                 <div class="form-group">
-                    <label for="phone">phone:</label>
-                    <input type="tel" name="phone" class="form-control" required>
-                </div>-->
+                    <label for="field_name">field_name:</label>
+                    <input type="tel" name="field_name" class="form-control" required>
+                </div>
                 <div class="form-group">
                     <label for="birthdate">birthdate:</label>
                 <input type="text" id="date" name="birthdate" step="any" class="form-control" required >

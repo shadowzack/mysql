@@ -1,16 +1,16 @@
 <?php
 
-$query="SELECT * FROM engineer";
+$query="SELECT * FROM projects";
 $results = mysqli_query($conn, $query);
 
 ?>
   <div class="row">
     <div class="col-xs-8">
-      <h2>engineer List</h2>
+      <h2>projects List</h2>
     </div>
     <div class="col-xs-4">
 
-      <a href="./?module=engineer&page=create">
+      <a href="./?module=projects&page=create">
         <button type="button" class="btn btn-success pull-right">create new</button>
       </a>
     </div>
@@ -24,12 +24,14 @@ if($results){
         <thead>
           <tr>
             <th>id</th>
-            <th>firstname</th>
-            <th>lastname</th>
-            <th>address</th>
-            <th>age</th>
-            <th>birthdate</th>
-            <th>field name</th>
+            <th>project name</th>
+            <th>devolpemnt tools</th>
+            <th>starting_time</th>
+            <th>customer name</th>
+            <th>product</th>
+            <th>budget</th>
+            <th>date</th>
+            <th>description</th>
           </tr>
         </thead>
         <tbody>
@@ -40,50 +42,44 @@ if($results){
 ?>
             <tr>
               <td>
-                <?=$row['id'];?>
+                <?=$row['project_id'];?>
               </td>
               <td>
-                <?=$row['firstname'];?>
+                <?=$row['project_name'];?>
               </td>
               <td>
-                <?=$row['lastname'];?>
+                <?=$row['devolopment_tools'];?>
               </td>
               <td>
-                <?=$row['addresss'];?>
+                <?=$row['starting_time'];?>
               </td>
               <td>
-                <?=$row['age'];?>
+                <?=$row['customer_name'];?>
               </td>
               <td>
-                <?=$row['birthdate']; ?>
+                <?=$row['product']; ?>
               </td>
-             
-              <?php
-              $id=$row['id'];
-              $sql="SELECT * FROM has WHERE id=$id";
-              $res = mysqli_query($conn, $sql);
-              
-              if($res){
-                
-               $rows=mysqli_fetch_assoc($res);
-              ?>
-               <td>
-                <?=$rows['field_name']; ?>
-              </td>
-              <?php
-           }?>
               <td>
-                <a href="./?module=engineer&page=info&id=<?php echo $row['id'];?>">
+                <?=$row['budget'];?>
+              </td>
+              <td>
+                <?=$row['datee'];?>
+              </td>
+              <td>
+                <?=$row['taoor']; ?>
+              </td>
+              <td>
+                <a href="./?module=projects&page=info&id=<?php echo $row['id'];?>">
                   <button type="button" class="btn btn-primary">info</button>
                 </a>
               </td>
               <td>
-                <a href="./?module=engineer&page=delete&id=<?php echo $row['id'];?>">
+                <a href="./?module=projects&page=delete&id=<?php echo $row['id'];?>">
                   <button type="button" class="btn btn-warning">Delete</button>
                 </a>
               </td>
               <td>
-                <a href="./?module=engineer&page=update&id=<?php echo $row['id'];?>">
+                <a href="./?module=projects&page=update&id=<?php echo $row['id'];?>">
                   <button type="button" class="btn btn-success">Edit</button>
                 </a>
               </td>

@@ -29,10 +29,9 @@ $sql="CREATE TABLE IF NOT EXISTS engineer (
     lastname VARCHAR(30) NOT NULL,
     addresss VARCHAR(50),
     age int(10),
-    birthdate VARCHAR(10),
-    field_id INT(60) UNSIGNED
+    birthdate VARCHAR(10)
     )";
-     /*FOREIGN key (field_id) REFERENCES software_field(id)*/
+     
 
 $query=mysqli_query($conn,$sql);
 if(!$query)
@@ -49,8 +48,19 @@ if(!$query)
 {
     echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
+$sql="CREATE TABLE IF NOT EXISTS has(
+    id INT(60) UNSIGNED PRIMARY KEY,
+    field_name VARCHAR(30),
+    FOREIGN KEY (id) REFERENCES engineer(id),
+    FOREIGN key (field_name) REFERENCES software_field(field_name) 
+)";
+$query=mysqli_query($conn,$sql);
+if(!$query)
+{
+   echo "Error creating table: " . mysqli_error($conn)."<br>";
+}
 
-
+    
 //#################SOFTWARE FIELD############################
 $sql="CREATE TABLE IF NOT EXISTS software_field (
     id INT(60) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
@@ -63,26 +73,13 @@ if(!$query)
 {
 echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
-/*
-$sql="CREATE TABLE  IF NOT EXISTS has (
-    field_id INT(60) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-    id INT(60) UNSIGNED ,
-    FOREIGN KEY (id) REFERENCES engineer(id),
-    FOREIGN KEY (field_id) REFERENCES sef(field_id) )";
-
-$query=mysqli_query($conn,$sql);
-if(!$query)
-{
-echo "Error creating table: " . mysqli_error($conn)."<br>";
-}
-*/
 
 
 //#####################projects#####################################
 $sql="CREATE TABLE IF NOT EXISTS projects (
     project_id INT(60) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
     project_name VARCHAR(30)  ,
-    devolment_tools VARCHAR(320) ,
+    devolopment_tools VARCHAR(320) ,
     starting_time VARCHAR(20) ,
     customer_name VARCHAR(40) ,
     product VARCHAR(30) ,
@@ -99,10 +96,15 @@ echo "Error creating table: " . mysqli_error($conn)."<br>";
 
 
 $sql="CREATE TABLE  IF NOT EXISTS works (
-    project_id INT(60) UNSIGNED PRIMARY KEY, 
-    engineer_id INT(60) UNSIGNED ,
-    FOREIGN KEY (engineer_id) REFERENCES engineer(id),
-    FOREIGN KEY (project_id) REFERENCES projects(project_id)
+    project_id INT(60) UNSIGNED NOT NULL,
+    engineer_id INT(60) UNSIGNED NOT NULL,
+    PRIMARY KEY (project_id, engineer_id),
+    CONSTRAINT Constr_engineer_works_project_id_fk
+        FOREIGN KEY (project_id) REFERENCES projects (project_id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT Constr_engineer_project_engineer_id_fk
+    FOREIGN KEY (engineer_id) REFERENCES engineer(id)
+        ON DELETE CASCADE ON UPDATE CASCADE
     )";
 $query=mysqli_query($conn,$sql);
 if(!$query)

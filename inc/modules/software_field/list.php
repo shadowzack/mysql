@@ -44,12 +44,13 @@ if($results){
                 <?=$row['expertise'];?>
               </td>
 
-
+<!--
               <td>
                 <a href="./?module=software_field&page=info&id=<?php echo $row['id'];?>">
                   <button type="button" class="btn btn-primary">info</button>
                 </a>
               </td>
+              -->
               <td>
                 <a href="./?module=software_field&page=delete&id=<?php echo $row['id'];?>">
                   <button type="button" class="btn btn-warning">Delete</button>
