@@ -71,16 +71,32 @@ die;
                     <label for="age">age:</label>
                     <input type="text" name="age" step="any" class="form-control" required>
                 </div>-->
-                
+
                 <div class="form-group">
                     <label for="field_name">field_name:</label>
-                    <input type="tel" name="field_name" class="form-control" required>
+                    <?php
+                     $sql2="SELECT field_name FROM software_field";
+                     $res=mysqli_query($conn,$sql2);
+                     ?>
+                        <select name="field_name" class="form-control" required>
+                            <option value="" disabled selected hidden>choose field...</option>
+                            <?php
+                     while($row=mysqli_fetch_assoc($res)){
+                             ?>
+                                <option value[]="<?=$row['field_name'];?>">
+                                    <?=$row['field_name'];?>
+                                </option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                       <!-- <input type="tel" name="field_name" class="form-control" required>-->
                 </div>
                 <div class="form-group">
                     <label for="birthdate">birthdate:</label>
-                <input type="text" id="date" name="birthdate" step="any" class="form-control" required >
+                    <input type="text" id="date" name="birthdate" step="any" class="form-control" required>
                     <small>Enter date as Month / Day / Year</small>
-                    </div>
+                </div>
         </div>
         <button type="submit" class="btn btn-default" name="save">Submit</button>
         </form>

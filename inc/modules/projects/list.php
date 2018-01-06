@@ -13,6 +13,12 @@ $results = mysqli_query($conn, $query);
       <a href="./?module=projects&page=create">
         <button type="button" class="btn btn-success pull-right">create new</button>
       </a>
+      <a href="./?module=projects&page=allprojects">
+        <button type="button" class="btn btn-success pull-right">engineers that work in all projects</button>
+      </a>
+      <a href="./?module=projects&page=create">
+        <button type="button" class="btn btn-success pull-right">create new</button>
+      </a>
     </div>
     <div class="col-xs-12">
 
@@ -69,17 +75,17 @@ if($results){
                 <?=$row['taoor']; ?>
               </td>
               <td>
-                <a href="./?module=projects&page=info&id=<?php echo $row['id'];?>">
-                  <button type="button" class="btn btn-primary">info</button>
+                <a href="./?module=projects&page=info&id=<?php echo $row['project_id'];?>">
+                  <button type="button" class="btn btn-primary">who works here</button>
                 </a>
               </td>
               <td>
-                <a href="./?module=projects&page=delete&id=<?php echo $row['id'];?>">
+                <a href="./?module=projects&page=delete&id=<?php echo $row['project_id'];?>">
                   <button type="button" class="btn btn-warning">Delete</button>
                 </a>
               </td>
               <td>
-                <a href="./?module=projects&page=update&id=<?php echo $row['id'];?>">
+                <a href="./?module=projects&page=update&id=<?php echo $row['project_id'];?>">
                   <button type="button" class="btn btn-success">Edit</button>
                 </a>
               </td>
