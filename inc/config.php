@@ -1,8 +1,4 @@
 <?php
-/*
-$conn = mysqli_connect('localhost:3306','root','');
-$dbci= new mysqli('localhost:3306','root','');
-$dbci->select_db('mydb');*/
 $host="localhost:3306";
 $user="root";
 $pass="";
@@ -79,12 +75,8 @@ echo "Error creating table: " . mysqli_error($conn)."<br>";
 $sql="CREATE TABLE IF NOT EXISTS projects (
     project_id INT(60) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
     project_name VARCHAR(30)  ,
-    devolopment_tools VARCHAR(320) ,
     starting_time VARCHAR(20) ,
     customer_name VARCHAR(40) ,
-    product VARCHAR(30) ,
-    budget INT(100),
-    datee VARCHAR(60) ,
     taoor VARCHAR(260) 
     )";
 
@@ -93,8 +85,34 @@ if(!$query)
 {
 echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
-
-
+//#################milestones##############
+$sql="CREATE TABLE IF NOT EXISTS milestones (
+    project_id INT(60) UNSIGNED PRIMARY KEY,
+    product_name VARCHAR(30) ,
+    budget INT(100),
+    datee VARCHAR(60),
+    FOREIGN KEY (project_id) REFERENCES projects(project_id) ,
+    UNIQUE (product_name) )";
+    $query=mysqli_query($conn,$sql);
+if(!$query)
+{
+    echo "Error creating table: " . mysqli_error($conn)."<br>";
+}
+//#################development_stages##############
+$sql="CREATE TABLE IF NOT EXISTS development_stages (
+    project_id INT(60) UNSIGNED PRIMARY KEY,
+    tests VARCHAR(30) ,
+    design VARCHAR(100),
+    con_management VARCHAR(60),
+    requirements VARCHAR(60),
+    coding VARCHAR(60),
+    FOREIGN KEY (project_id) REFERENCES projects(project_id)  )";
+    $query=mysqli_query($conn,$sql);
+if(!$query)
+{
+    echo "Error creating table: " . mysqli_error($conn)."<br>";
+}
+//#############works######################
 $sql="CREATE TABLE  IF NOT EXISTS works (
     project_id INT(60) UNSIGNED NOT NULL,
     engineer_id INT(60) UNSIGNED NOT NULL,

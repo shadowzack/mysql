@@ -16,8 +16,8 @@ $results = mysqli_query($conn, $query);
       <a href="./?module=projects&page=allprojects">
         <button type="button" class="btn btn-success pull-right">engineers that work in all projects</button>
       </a>
-      <a href="./?module=projects&page=create">
-        <button type="button" class="btn btn-success pull-right">create new</button>
+      <a href="./?module=projects&page=v_s_s_p">
+        <button type="button" class="btn btn-success pull-right">view witch project uses spicfied devolpemnt stage</button>
       </a>
     </div>
     <div class="col-xs-12">
@@ -31,12 +31,9 @@ if($results){
           <tr>
             <th>id</th>
             <th>project name</th>
-            <th>devolpemnt tools</th>
             <th>starting_time</th>
             <th>customer name</th>
-            <th>product</th>
-            <th>budget</th>
-            <th>date</th>
+           
             <th>description</th>
           </tr>
         </thead>
@@ -53,15 +50,17 @@ if($results){
               <td>
                 <?=$row['project_name'];?>
               </td>
-              <td>
-                <?=$row['devolopment_tools'];?>
-              </td>
+              
               <td>
                 <?=$row['starting_time'];?>
               </td>
               <td>
                 <?=$row['customer_name'];?>
               </td>
+              <td>
+                <?=$row['taoor']; ?>
+              </td>
+              <!--
               <td>
                 <?=$row['product']; ?>
               </td>
@@ -71,8 +70,14 @@ if($results){
               <td>
                 <?=$row['datee'];?>
               </td>
+              
               <td>
-                <?=$row['taoor']; ?>
+                <?=$row['devolopment_tools'];?>
+              </td>-->
+              <td>
+                <a href="./?module=projects&page=info&id=<?php echo $row['project_id'];?>">
+                  <button type="button" class="btn btn-success">info</button>
+                </a>
               </td>
               <td>
                 <a href="./?module=projects&page=info&id=<?php echo $row['project_id'];?>">
@@ -89,7 +94,7 @@ if($results){
                   <button type="button" class="btn btn-success">Edit</button>
                 </a>
               </td>
-
+             
             </tr>
             <?php
      }
