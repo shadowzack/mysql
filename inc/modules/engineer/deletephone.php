@@ -1,5 +1,5 @@
 <?php
-if(isset($_POST['phone'])){
+if(isset($_POST['phone_btn'])){
      
  //mysqli_autocommit($conn,FALSE);
  /* $sql="DELETE FROM phone WHERE phone=? AND id=?";
@@ -8,15 +8,15 @@ if(isset($_POST['phone'])){
     $phone=$_POST['phone'];
   $qury->bind_param("ii",$phone,$id);
   $result=$qury->execute();*/
-  $phone=$_POST['phone'];
+  $phone=$_POST['phonedl'];
   $id=$_GET['id'];
 //  $phone=$_POST['phone'];
-$sql="DELETE FROM phone WHERE phone.phone'$phone' AND phone.id='$id' ";
+
+$sql="DELETE phone FROM phone WHERE phone.phone='$phone'  ";
 $result=mysqli_query($conn,$sql);
 
 if($result){
  // mysqli_commit($conn);
-
 ?>
   <div class="alert alert-success">
     <strong>Success!</strong> phone successfully deleted <a href="./?module=engineer&page=info&id=<?=$_GET['id'];?>">click here </a>
@@ -68,10 +68,15 @@ die;
                 <?=$row['phone'];?>
               </td>
 
+              <td name="">
+            <input type="hidden" name="phonedl" value=" <?=$row['phone']?>">
+            </td>
+
               <td>
-              <!--  <a href="./?module=engineer&page=deletephone&id=<?php echo $row['phone'];?>">
-                 --> <button type="submit"  name="phone" class="btn btn-warning">delete</button>
-              <!--  </a>-->
+            
+                <a href="./?module=engineer&page=deletephone&id=<?php echo $row['phone'];?>">
+                 <button type="submit"  name="phone_btn" class="btn btn-warning">delete</button>
+                </a>
               </td>
               </tr>
       
