@@ -80,7 +80,7 @@ if($results){
                 </a>
               </td>
               <td>
-                <a href="./?module=projects&page=info&id=<?php echo $row['project_id'];?>">
+                <a href="./?module=projects&page=whoworkshere&id=<?php echo $row['project_id'];?>">
                   <button type="button" class="btn btn-primary">who works here</button>
                 </a>
               </td>
