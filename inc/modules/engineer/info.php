@@ -114,7 +114,7 @@ if($count>0){
 
 
                 </tbody>
-                <tr style="border-top:4px solid black;">
+               <!-- <tr style="border-top:4px solid black;">
                     <th>PROJECTS</th>
 
                 </tr>
@@ -141,16 +141,87 @@ if($count>0){
                 
                 }?>
 
-                </tr>
+                </tr>-->
             </table>
+
+            </div>
+    </div>
+
+
+            <div class="row">
+        <div class="col-xs-8" style="width:60%">
+            <h2>
+                engineer projects</h2>
+        </div>
+
+        <div class="col-xs-4" style="display:flex;flex-direction: row-reverse;justify-content: space-around;width:40%;">
+
+        </div>
+
+        <div class="col-xs-12">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>project name</th>
+                        <th>project id</th>
+                        <th>grade</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                   $sql="SELECT projects.project_name,works.engineer_id,projects.project_id,works.grade
+                   FROM projects
+                   INNER JOIN works
+                   ON projects.project_id=works.project_id
+                   WHERE engineer_id=$tmpid ";
+                  $res=mysqli_query($conn,$sql);
+                  if ($res) {
+                  $count2=mysqli_num_rows($res);
+                  while($data=mysqli_fetch_assoc($res))
+                  {
+                      ?>
+                      <tr>
+                        <td>
+                            <?=$data['project_name'];?>
+                         </td>
+                         <td>
+                            <?=$data['project_id'];?>
+                         </td>
+                         <td>
+                            <?php 
+                            if ($data['grade']==null) {
+                              echo"not graded yet"; 
+                            }else{
+                           echo $data['grade'];
+                            }?>
+                         </td>
+                         <td>
+                <a href="./?module=engineer&page=updategrade&id=<?php echo $data['project_id'];?>&eid=<?php echo $tmpid;?>">
+                  <button type="button" class="btn btn-success">update grade</button>
+                </a>
+              </td>
+
+                         </tr>
+                 <?php
+                  }
+                
+                }?>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+
             <?php
 }else{
   include('inc/problem/no_results.php');
 }
 ?>
 
-        </div>
-    </div>
+    
     <style>
         .inforows td {
             padding: 8px;

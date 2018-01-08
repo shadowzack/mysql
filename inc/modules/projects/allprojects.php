@@ -8,18 +8,7 @@ $count=mysqli_num_rows($results);
     <div class="col-xs-8">
       <h2>engineers who worked on all projects</h2>
     </div>
-  <!--  <div class="col-xs-4">
 
-      <a href="./?module=projects&page=create">
-        <button type="button" class="btn btn-success pull-right">create new</button>
-      </a>
-      <a href="./?module=projects&page=allprojects">
-        <button type="button" class="btn btn-success pull-right">engineers that work in all projects</button>
-      </a>
-      <a href="./?module=projects&page=create">
-        <button type="button" class="btn btn-success pull-right">create new</button>
-      </a>
-    </div>-->
     <div class="col-xs-12">
 
       <?php

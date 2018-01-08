@@ -1,3 +1,7 @@
+<style>
+.btn_wrapper{}
+.btn_wrapper a button{margin:2px;}
+</style>
 <?php
 
 $query="SELECT * FROM projects";
@@ -5,19 +9,22 @@ $results = mysqli_query($conn, $query);
 
 ?>
   <div class="row">
-    <div class="col-xs-8">
+    <div class="col-xs-8" style="width:60%">
       <h2>projects List</h2>
     </div>
-    <div class="col-xs-4">
-
+    <div class="col-xs-4 btn_wrapper">
+    <a href="./?module=projects&page=v_s_s_p">
+        <button type="button" class="btn btn-success pull-right">view witch project uses spicfied devolpemnt stage</button>
+      </a>
       <a href="./?module=projects&page=create">
         <button type="button" class="btn btn-success pull-right">create new</button>
       </a>
       <a href="./?module=projects&page=allprojects">
         <button type="button" class="btn btn-success pull-right">engineers that work in all projects</button>
       </a>
-      <a href="./?module=projects&page=v_s_s_p">
-        <button type="button" class="btn btn-success pull-right">view witch project uses spicfied devolpemnt stage</button>
+    
+      <a href="./?module=projects&page=b_w_t_p">
+        <button type="button" class="btn btn-success pull-right">best and worst three projects</button>
       </a>
     </div>
     <div class="col-xs-12">

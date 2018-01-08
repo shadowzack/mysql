@@ -51,8 +51,9 @@ $res = mysqli_query($conn, $query);
       <table class="table table-striped">
         <thead>
           <tr>
+          <th>project name</th>
             <th>id</th>
-            <th><?php 
+            <th><?php
             
             if(isset($_POST['dev_select'])){
             echo $_POST['dev_select'];}?></th>
@@ -64,7 +65,10 @@ $res = mysqli_query($conn, $query);
 
 //echo $_POST['dev_select'];
 $tmp=$_POST['dev_select'];
-$query="SELECT $tmp,project_id FROM development_stages";
+$query="SELECT $tmp,development_stages.project_id,projects.project_name FROM development_stages
+ INNER JOIN projects
+  ON development_stages.project_id=projects.project_id
+";
 $res = mysqli_query($conn, $query);
 if ($res) {
    // $sql="SELECT project_name FROM projects WHERE projects.project_id="
@@ -73,11 +77,15 @@ if ($res) {
     ?>
                 <tr>
                 <td>
+                    <?=$row['project_name'];?>
+                  </td>
+                <td>
                     <?=$row['project_id'];?>
                   </td>
                   <td>
                     <?=$row[$tmp];?>
                   </td>
+                 
                 </tr>
                   <?php
 }

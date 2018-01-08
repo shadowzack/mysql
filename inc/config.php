@@ -116,6 +116,7 @@ if(!$query)
 $sql="CREATE TABLE  IF NOT EXISTS works (
     project_id INT(60) UNSIGNED NOT NULL,
     engineer_id INT(60) UNSIGNED NOT NULL,
+    grade INT(10) UNSIGNED,
     PRIMARY KEY (project_id, engineer_id),
     CONSTRAINT Constr_engineer_works_project_id_fk
         FOREIGN KEY (project_id) REFERENCES projects (project_id)

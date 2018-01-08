@@ -44,6 +44,9 @@ die;
                    INNER JOIN works
                    ON projects.project_id=works.project_id
                    WHERE  engineer_id!=$tmpid";
+                   $sql="SELECT projects.project_name,projects.project_id
+                   FROM projects
+                    ";
                   $res=mysqli_query($conn,$sql);
                   if ($res) {
                   $count2=mysqli_num_fields($res);
