@@ -57,7 +57,8 @@ die;
               
                 <div class="form-group">
                     <label for="starting_time">starting_time:</label>
-                    <input type="text" name="starting_time" class="form-control" required>
+                    <input type="text" id="date" name="starting_time" step="any" class="form-control" required>
+                    <small>Enter date as Month / Day / Year</small>
                 </div>
                 
                 <div class="form-group">
@@ -70,24 +71,7 @@ die;
                     <label for="taoor">taoor:</label>
                     <input type="tel" name="taoor" class="form-control" required>
                 </div>
-             <!--  <div class="form-group">
-                    <label for="product">product:</label>
-                    <input type="tel" name="product" class="form-control" required>
-                </div>
-                 
-                <div class="form-group">
-                    <label for="budget">budget:</label>
-                    <input type="tel" name="budget" class="form-control" required>
-                </div>
-                 
-                <div class="form-group">
-                    <label for="datee">datee:</label>
-                    <input type="tel" name="datee" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="devolopment_tools">devolopment_tools:</label>
-                    <input type="text" name="devolopment_tools" step="any" class="form-control" required>
-                </div>-->
+     
 
         </div>
         <button type="submit" class="btn btn-default" name="save">Submit</button>

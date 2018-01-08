@@ -13,6 +13,7 @@ if(isset($_POST['save'])){
 $sql="INSERT INTO milestones (project_id, product_name,budget,datee)
 VALUES ('$project_id','$product_name','$budget','$datee')";
  $result=mysqli_query($conn,$sql);
+
 if($result){
 ?>
     <div class="alert alert-success">
@@ -53,7 +54,9 @@ die;
                 
                 <div class="form-group">
                     <label for="datee">datee:</label>
-                    <input type="tel" name="datee" class="form-control" required>
+                    <input type="text" id="date" name="datee" step="any" class="form-control" required>
+                    <small>Enter date as Month / Day / Year</small>
+              
                 </div>
                  
                 
