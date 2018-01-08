@@ -15,8 +15,8 @@ $result=mysqli_query($conn,$sql);
  else{
 ?>
    <div class="alert alert-danger">
-        <strong>Error!</strong> error in deleting software_field
-        <a href="./?module=software_field&page=create">click here</a> to retry.
+        <strong>Error!</strong> you cant delete feild without deleting engineers who work here
+        <a href="./?module=software_field&page=list">click here</a> to retry.
     </div>
 <?php
  }

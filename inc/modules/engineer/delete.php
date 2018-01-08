@@ -1,6 +1,7 @@
 <?php
 if (isset($_GET['id'])) {
-	$id = $_GET['id'];
+      $id = $_GET['id'];
+      /*
 $sql="DELETE FROM phone WHERE id=$id";
 $result=mysqli_query($conn,$sql);
 if(!$result)
@@ -13,6 +14,26 @@ if(!$result)
 
 $sql="DELETE FROM engineer WHERE id=$id";
  $result=mysqli_query($conn,$sql);
+*/
+mysqli_query($conn,"DROP TRIGGER before_delete_engineer;");
+$trigger=" CREATE TRIGGER before_delete_engineer BEFORE DELETE ON engineer 
+FOR EACH ROW
+BEGIN 
+DELETE FROM has WHERE id=$id;
+DELETE FROM phone WHERE id=$id;
+END;
+";
+ $trigger_result=mysqli_query($conn,$trigger);
+ if(!$trigger_result)
+ {
+      echo "Error creating table: " . mysqli_error($conn)."<br>";
+ }
+ $sql="DELETE FROM engineer WHERE id=$id";
+ $result=mysqli_query($conn,$sql);
+ if(!$result)
+ {
+      echo "Error creating table: " . mysqli_error($conn)."<br>";
+ }
  if($result)
  {
 ?>
@@ -25,7 +46,7 @@ $sql="DELETE FROM engineer WHERE id=$id";
 ?>
    <div class="alert alert-danger">
         <strong>Error!</strong> error in deleting engineer
-        <a href="./?module=engineer&page=create">click here</a> to retry.
+        <a href="./?module=engineer&page=list">click here</a> to retry.
     </div>
 <?php
  }
