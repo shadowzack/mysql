@@ -34,6 +34,7 @@ if(!$query)
 {
 echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
+//#############phone ####################################
  $sql="CREATE TABLE IF NOT EXISTS phone(
      phone INT(10) UNSIGNED PRIMARY KEY,
      id INT(60) UNSIGNED ,
@@ -43,17 +44,6 @@ echo "Error creating table: " . mysqli_error($conn)."<br>";
 if(!$query)
 {
     echo "Error creating table: " . mysqli_error($conn)."<br>";
-}
-$sql="CREATE TABLE IF NOT EXISTS has(
-    id INT(60) UNSIGNED PRIMARY KEY,
-    field_name VARCHAR(30),
-    FOREIGN KEY (id) REFERENCES engineer(id),
-    FOREIGN key (field_name) REFERENCES software_field(field_name) 
-)";
-$query=mysqli_query($conn,$sql);
-if(!$query)
-{
-   echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
 
     
@@ -68,6 +58,19 @@ $query=mysqli_query($conn,$sql);
 if(!$query)
 {
 echo "Error creating table: " . mysqli_error($conn)."<br>";
+}
+
+//###############has############################
+$sql="CREATE TABLE IF NOT EXISTS has(
+    id INT(60) UNSIGNED PRIMARY KEY,
+    field_name VARCHAR(30),
+    FOREIGN KEY (id) REFERENCES engineer(id),
+    FOREIGN key (field_name) REFERENCES software_field(field_name) 
+)";
+$query=mysqli_query($conn,$sql);
+if(!$query)
+{
+   echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
 
 
@@ -131,8 +134,6 @@ if(!$query)
 echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
 
-
-//$sql=mysql_query("CREATE TRIGGER `proff_delete` BEFORE DELETE ON `Professors` FOR EACH ROW DELETE FROM PhonesProff where PhonesProff.Professors_id=OLD.id");
 
 
 ?>
