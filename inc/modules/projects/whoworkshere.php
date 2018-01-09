@@ -66,7 +66,7 @@ if($results){
                 </td>
                 <td>
                 
-                <a href="./?module=engineer&page=info&id=<?php echo $row['id'];?>">
+                <a href="./?module=engineer&page=info&id=<?php echo $row['engineer_id'];?>">
                   <button type="button" class="btn btn-success">info</button>
                 </a>
               </td>
