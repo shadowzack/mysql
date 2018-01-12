@@ -11,7 +11,7 @@ if(isset($_POST['save'])){
 
 
 $sql="UPDATE milestones SET 
-product_name='$product_name',budget='$budget',datee='$datee' WHERE milestones.project_id='{$_GET['id']}'
+product_name='$product_name',budget='$budget',datee='$datee' WHERE milestones.id='{$_GET['id_main']}'
 ";
  $result=mysqli_query($conn,$sql);
 
@@ -40,7 +40,7 @@ die;
 <?php
 
 
-$sql= "SELECT * FROM milestones WHERE milestones.project_id={$_GET['id']} Limit 1";
+$sql= "SELECT * FROM milestones WHERE milestones.id={$_GET['id_main']} Limit 1";
 $result=mysqli_query($conn,$sql);
 $old_data=mysqli_fetch_assoc($result);
 ?>
@@ -49,7 +49,7 @@ $old_data=mysqli_fetch_assoc($result);
             <h2>
                 Create new project milestones
             </h2>
-            <form method="POST" action="./?module=projects&page=updatemilestones&id=<?=$_GET['id'];?>">
+            <form method="POST" action="./?module=projects&page=updatemilestones&id=<?=$_GET['id'];?>&id_main=<?=$_GET['id_main'];?>">
                 <div class="form-group">
                     <label for="product_name">product_name:</label>
                     <input type="text" name="product_name" class="form-control" value="<?=$old_data['product_name'];?>" required>

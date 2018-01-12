@@ -65,7 +65,7 @@ $sql="CREATE TABLE IF NOT EXISTS has(
     id INT(60) UNSIGNED PRIMARY KEY,
     field_name VARCHAR(30),
     FOREIGN KEY (id) REFERENCES engineer(id),
-    FOREIGN key (field_name) REFERENCES software_field(field_name) 
+    FOREIGN key (field_name) REFERENCES software_field(field_name) ON UPDATE CASCADE
 )";
 $query=mysqli_query($conn,$sql);
 if(!$query)
@@ -90,12 +90,13 @@ echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
 //#################milestones##############
 $sql="CREATE TABLE IF NOT EXISTS milestones (
-    project_id INT(60) UNSIGNED PRIMARY KEY,
+    id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    project_id INT(60) UNSIGNED,
     product_name VARCHAR(30) ,
     budget INT(100),
     datee VARCHAR(60),
-    FOREIGN KEY (project_id) REFERENCES projects(project_id) ,
-    UNIQUE (product_name) )";
+    FOREIGN KEY (project_id) REFERENCES projects(project_id) )";
+    //, UNIQUE (product_name) 
     $query=mysqli_query($conn,$sql);
 if(!$query)
 {
@@ -134,7 +135,7 @@ if(!$query)
 echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
 
-
+/*
 $sql="INSERT INTO `development_stages` (`project_id`, `tests`, `design`, `con_management`, `requirements`, `coding`) VALUES
 (1, 'visual', 'mvc', 'git', 'server side', 'c'),
 (2, 'vsiual', 'oop', 'git', 'server clinet', 'php mysl'),
@@ -188,17 +189,17 @@ if(!$query)
 echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
 
-$sql="INSERT INTO `milestones` (`project_id`, `product_name`, `budget`, `datee`) VALUES
-(1, 'pp', 200000, '12/12/1999'),
-(2, 'produ', 5220, '04/05/2001'),
-(3, 'straming', 5515521, '12/12/1997'),
-(4, 'ech srveer', 53456, '02/22/2005'),
-(5, 'java', 252515, '01/04/1988'),
-(6, 'wirless', 56454, '04/06/2007'),
-(7, 'auto driveing', 4531, '12/08/2013'),
-(8, 'social', 521111, '05/07/2009'),
-(9, 'drive onlie ', 400000, '12/09/2001'),
-(10, 'x linux', 1, '01/15/2018');";
+$sql="INSERT INTO `milestones` (`id`,`project_id`, `product_name`, `budget`, `datee`) VALUES
+(1,1, 'pp', 200000, '12/12/1999'),
+(2,2, 'produ', 5220, '04/05/2001'),
+(3,3, 'straming', 5515521, '12/12/1997'),
+(4,4, 'ech srveer', 53456, '02/22/2005'),
+(5,5,'java', 252515, '01/04/1988'),
+(6,6, 'wirless', 56454, '04/06/2007'),
+(7,7, 'auto driveing', 4531, '12/08/2013'),
+(8,8, 'social', 521111, '05/07/2009'),
+(9, 9,'drive onlie ', 400000, '12/09/2001'),
+(10,10, 'x linux', 1, '01/15/2018');";
 $query=mysqli_query($conn,$sql);
 if(!$query)
 {
@@ -294,5 +295,5 @@ if(!$query)
 {
 echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
-
+*/
 ?>

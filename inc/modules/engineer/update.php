@@ -9,9 +9,17 @@ if(isset($_POST['update_btn'])){
     $address = $_POST['address'];
     $age=$_POST['age'];
     $birthdate=$_POST['birthdate'];
+    $field_name=$_POST['field_name'];
+    $sql="UPDATE has SET field_name='$field_name' WHERE id='{$_GET['id']}'";
+$res=mysqli_query($conn,$sql);
+if(!$res)
+{
+   echo "Error creating table: " . mysqli_error($conn)."<br>";
+}
 
 $sql="UPDATE  engineer SET firstname='$firstname', lastname='$lastname', addresss='$address',age='$age',birthdate='$birthdate' WHERE engineer.id='{$_GET['id']}'";
  $result=mysqli_query($conn,$sql);
+
 if($result){
 
 ?>
@@ -65,7 +73,26 @@ $old_data=mysqli_fetch_assoc($result);
         <label for="birthdate">birthdate:</label>
         <input type="text" name="birthdate" step="any" class="form-control"  value="<?=$old_data['birthdate'];?>" required>
     </div>
-           
+    <div class="form-group">
+                    <label for="field_name">field_name:</label>
+                    <?php
+                     $sql2="SELECT field_name FROM software_field";
+                     $res=mysqli_query($conn,$sql2);
+                     ?>
+                        <select name="field_name" class="form-control" required>
+                            <option value="" disabled selected hidden>choose field...</option>
+                            <?php
+                     while($row=mysqli_fetch_assoc($res)){
+                             ?>
+                                <option value[]="<?=$row['field_name'];?>">
+                                    <?=$row['field_name'];?>
+                                </option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                       <!-- <input type="tel" name="field_name" class="form-control" required>-->
+                </div>  
 
       <button type="submit" class="btn btn-default" name="update_btn">update</button>
     </form>

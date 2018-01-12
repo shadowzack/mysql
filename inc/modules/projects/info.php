@@ -196,6 +196,7 @@ if($count>0){
                   while($data=mysqli_fetch_assoc($res))
                   {
                       ?>
+                      <tr>
                             <td>
                                 <?=$data['product_name'];?>
 
@@ -207,16 +208,18 @@ if($count>0){
                                 <?=$data['datee'];?>
                             </td>
                             <td>
-                <a href="./?module=projects&page=updatemilestones&id=<?php echo $data['project_id'];?>">
+                <a href="./?module=projects&page=updatemilestones&id=<?php echo $data['project_id'];?>&id_main=<?php echo $data['id'];?>">
                   <button type="button" class="btn btn-success">Edit</button>
                 </a>
               </td>
 
               <td>
-                <a href="./?module=projects&page=deletemilestones&id=<?php echo $data['project_id'];?>">
+             
+                <a href="./?module=projects&page=deletemilestones&id=<?php echo $data['project_id'];?>&id_main=<?php echo $data['id'];?>">
                   <button type="button" class="btn btn-warning">delete</button>
                 </a>
               </td>
+              </tr>
                             <?php
                   }
                 

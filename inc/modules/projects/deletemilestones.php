@@ -1,7 +1,8 @@
 <?php
 if (isset($_GET['id'])) {
-	$id = $_GET['id'];
-$sql="DELETE FROM milestones WHERE project_id=$id";
+  $id = $_GET['id'];
+  $id_main=$_GET['id_main'];
+$sql="DELETE FROM milestones WHERE id=$id_main";
 $result=mysqli_query($conn,$sql);
 
  if($result)
