@@ -39,18 +39,35 @@ die;
         <label for="project_selsect">Projectname:</label>
         <?php
         $tmpid=$_GET['id'] ;
-                   $sql="SELECT  projects.project_name,works.engineer_id,projects.project_id
+                   $sql="SELECT projects.project_name,projects.project_id
+                   FROM projects 
+                   WHERE projects.project_id  NOT IN (SELECT  projects.project_id
                    FROM projects
                    INNER JOIN works
                    ON projects.project_id=works.project_id
-                   WHERE  engineer_id!=$tmpid";
-                   $sql="SELECT projects.project_name,projects.project_id
+                   WHERE  engineer_id=$tmpid
+                   GROUP BY projects.project_name)
+                ";
+                 /*  $sql="SELECT projects.project_name,projects.project_id
                    FROM projects
-                    ";
+                   INNER JOIN (SELECT projects.project_name,projects.project_id AS id
+                   FROM projects
+                   INNER JOIN works
+                   ON projects.project_id!=works.project_id
+                   WHERE engineer_id=$tmpid
+                   GROUP BY id)AS T
+                   ON project_id=T.id
+                    ";*/
                   $res=mysqli_query($conn,$sql);
+                  if(!$res)
+                {
+echo  mysqli_error($conn)."<br>";
+}
                   if ($res) {
-                  $count2=mysqli_num_fields($res);
-                 // echo($count2);
+                  $count2=mysqli_num_rows($res);
+                  if ($count2==0) {
+                    echo "<h2>"."this engineer already works on all projects"."</h2>";
+                  }
                   ?>
                   <select name="project_selsect" class="form-control" required>
                             <option value="" disabled selected hidden>choose project...</option>

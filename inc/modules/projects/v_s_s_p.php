@@ -27,6 +27,10 @@ $res = mysqli_query($conn, $query);
                <option value="tests">
                           tests
                       </option>
+                           
+               <option value="unit_testing">
+                          unit testing
+                      </option>
                       <option value="design">
                           design
                       </option>
@@ -65,29 +69,55 @@ $res = mysqli_query($conn, $query);
 
 //echo $_POST['dev_select'];
 $tmp=$_POST['dev_select'];
-$query="SELECT $tmp,development_stages.project_id,projects.project_name FROM development_stages
+$query="SELECT development_stages.project_id,projects.project_name,development_stages.stage_name,development_stages.tool_name FROM development_stages
  INNER JOIN projects
   ON development_stages.project_id=projects.project_id
+  WHERE development_stages.stage_name='$tmp'
+  ORDER BY project_id
 ";
 $res = mysqli_query($conn, $query);
+if(!$res)
+{
+echo mysqli_error($conn)."<br>";
+}
 if ($res) {
    // $sql="SELECT project_name FROM projects WHERE projects.project_id="
+   $last_elm=0;
    while($row=mysqli_fetch_assoc($res)){
       
+    if ($last_elm==$row['project_id']) {
+      ?>
+      <tr>
+                <td>
+                   
+                  </td>
+                <td>
+                   
+                  </td>
+                  
+                  <td>
+                    <?=$row['tool_name'];?>
+                  </td>
+                </tr>
+      <?php
+    }else{
     ?>
-                <tr>
+                <tr style="border-top:4px solid gray">
                 <td>
                     <?=$row['project_name'];?>
                   </td>
                 <td>
                     <?=$row['project_id'];?>
                   </td>
+                  
                   <td>
-                    <?=$row[$tmp];?>
+                    <?=$row['tool_name'];?>
                   </td>
-                 
                 </tr>
                   <?php
+
+    }
+$last_elm=$row['project_id'];
 }
 }
   }  ?>      

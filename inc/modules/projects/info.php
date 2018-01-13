@@ -13,19 +13,24 @@ $count=mysqli_num_rows($result);
 while($data=mysqli_fetch_assoc($result)) $rows[]=$data;
 ?>
     <div class="row">
-        <div class="col-xs-8" style="width:60%">
+        <div class="col-xs-8" style="width:40%">
             <h2>
                 <?=$rows[0]['project_name']?> info</h2>
         </div>
 
-        <div class="col-xs-4" style="display:flex;flex-direction: row-reverse;justify-content: space-around;width:40%;">
+        <div class="col-xs-4" style="display:flex;flex-direction: row-reverse;justify-content: space-around;width:60%;">
             <a href="./?module=projects&page=addmilestones&id=<?=$_GET['id'];?>">
                 <button type="button" class="btn btn-success pull-right">add milestones</button>
             </a>
             <a href="./?module=projects&page=adddev&id=<?=$_GET['id'];?>">
-                <button type="button" class="btn btn-success">add devolepment stages</button>
+                <button type="button" class="btn btn-success">add devolepment stages tools</button>
             </a>
-        
+            <a href="./?module=projects&page=addtool&id=<?=$_GET['id'];?>">
+                <button type="button" class="btn btn-success">add new tools</button>
+            </a>
+            <a href="./?module=projects&page=deletetool&id=<?=$_GET['id'];?>">
+                <button type="button" class="btn btn-success">delete tools</button>
+            </a>
 
         </div>
 
@@ -65,7 +70,7 @@ if($count>0){
                         <td>
                             <?=$rows[0]['taoor'];?>
                         </td>
-                        
+
 
                     </tr>
                     <?php
@@ -84,82 +89,9 @@ if($count>0){
     </div>
 
 
-    <div class="row">
-        <div class="col-xs-8" style="width:60%">
-            <h2>
-                devolevment stages</h2>
-        </div>
-
-        <div class="col-xs-4" style="display:flex;flex-direction: row-reverse;justify-content: space-around;width:40%;">
-
-        </div>
-
-        <div class="col-xs-12">
-
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>tests</th>
-                        <th>design</th>
-                        <th>con_management</th>
-                        <th>requirements</th>
-                        <th>coding</th>
-                    </tr>
-                </thead>
-                <tbody>
 
 
-
-
-                    <tr>
-
-                        <?php
-                   $sql="SELECT *
-                   FROM development_stages
-                   WHERE project_id=$tmpid ";
-                  $res=mysqli_query($conn,$sql);
-                  if ($res) {
-                  $count2=mysqli_num_rows($res);
-                  while($data=mysqli_fetch_assoc($res))
-                  {
-                      ?>
-                            <td>
-                                <?=$data['tests'];?>
-
-                            </td>
-                            <td>
-                                <?=$data['design'];?>
-                            </td>
-                            <td>
-                                <?=$data['con_management'];?>
-                            </td>
-                            <td>
-                                <?=$data['requirements'];?>
-                            </td>
-                            <td>
-                                <?=$data['coding'];?>
-                            </td>
-                            <td>
-                <a href="./?module=projects&page=updatedev&id=<?php echo $data['project_id'];?>">
-                  <button type="button" class="btn btn-success">Edit</button>
-                </a>
-              </td>
-              <td>
-                <a href="./?module=projects&page=deletedev&id=<?php echo $data['project_id'];?>">
-                  <button type="button" class="btn btn-warning">delete</button>
-                </a>
-              </td>
-                            <?php
-                  }
-                
-                }?>
-
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
-    </div>
+ 
 
 
     <div class="row">
@@ -176,7 +108,7 @@ if($count>0){
 
             <table class="table table-striped">
                 <thead>
-                    <tr>
+                    <tr >
                         <th>product_name</th>
                         <th>budget</th>
                         <th>datee</th>
@@ -196,30 +128,30 @@ if($count>0){
                   while($data=mysqli_fetch_assoc($res))
                   {
                       ?>
-                      <tr>
-                            <td>
-                                <?=$data['product_name'];?>
+                            <tr>
+                                <td>
+                                    <?=$data['product_name'];?>
 
-                            </td>
-                            <td>
-                                <?=$data['budget'];?>
-                            </td>
-                            <td>
-                                <?=$data['datee'];?>
-                            </td>
-                            <td>
-                <a href="./?module=projects&page=updatemilestones&id=<?php echo $data['project_id'];?>&id_main=<?php echo $data['id'];?>">
-                  <button type="button" class="btn btn-success">Edit</button>
-                </a>
-              </td>
+                                </td>
+                                <td>
+                                    <?=$data['budget'];?>
+                                </td>
+                                <td>
+                                    <?=$data['datee'];?>
+                                </td>
+                                <td>
+                                    <a href="./?module=projects&page=updatemilestones&id=<?php echo $data['project_id'];?>&id_main=<?php echo $data['id'];?>">
+                                        <button type="button" class="btn btn-success">Edit</button>
+                                    </a>
+                                </td>
 
-              <td>
-             
-                <a href="./?module=projects&page=deletemilestones&id=<?php echo $data['project_id'];?>&id_main=<?php echo $data['id'];?>">
-                  <button type="button" class="btn btn-warning">delete</button>
-                </a>
-              </td>
-              </tr>
+                                <td>
+
+                                    <a href="./?module=projects&page=deletemilestones&id=<?php echo $data['project_id'];?>&id_main=<?php echo $data['id'];?>">
+                                        <button type="button" class="btn btn-warning">delete</button>
+                                    </a>
+                                </td>
+                            </tr>
                             <?php
                   }
                 
@@ -231,6 +163,328 @@ if($count>0){
 
         </div>
     </div>
+
+
+
+
+                            <!--    <td>
+                <a href="./?module=projects&page=updatedev&id=<?php echo $data['project_id'];?>">
+                  <button type="button" class="btn btn-success">Edit</button>
+                </a>
+              </td>
+              <td>
+                <a href="./?module=projects&page=deletedev&id=<?php echo $data['project_id'];?>">
+                  <button type="button" class="btn btn-warning">delete</button>
+                </a>
+              </td>-->
+
+<style>
+
+tr th{font-size:20px;}
+.hhh td{width:50%}
+</style>
+
+    <div class="row" style="">
+        <div class="col-xs-8" style="width:60%">
+        <h2>
+                devolevment stages</h2>
+        </div>
+        <div class="col-xs-4" style="display:flex;flex-direction: row-reverse;justify-content: space-around;width:40%;">
+        </div>
+        <div class="col-xs-12">
+            <table class="table table-striped">
+                    <thead>
+                        <tr >
+                            <th style="font-size:23px;">tests</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <?php
+                      $sql="SELECT *
+                      FROM development_stages
+                      WHERE project_id=$tmpid";
+                     $res=mysqli_query($conn,$sql);
+                     if ($res) {
+                  while($data=mysqli_fetch_assoc($res))
+                  {   if ($data['stage_name']=="tests") {
+                      ?>
+                        <tr class="hhh">
+                                <td>
+                                    <?php 
+                               
+                                  echo $data['tool_name'];
+                                
+                                ?>
+
+                                </td>
+                                <td>
+                <a href="./?module=projects&page=deletedev&id=<?php echo $tmpid;?>&stage=<?php echo $data['stage_name'];?>&tool=<?php echo $data['tool_name'];?>">
+                  <button type="button" class="btn btn-warning">delete</button>
+                </a>
+              </td>
+                                </tr>
+                                    <?php 
+                  }
+               }} ?>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+                    <div class="row" style="">
+        <div class="col-xs-8" style="width:60%">
+        </div>
+        <div class="col-xs-4" style="display:flex;flex-direction: row-reverse;justify-content: space-around;width:40%;">
+        </div>
+        <div class="col-xs-12">
+            <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>unit_testing</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <?php
+                    mysqli_data_seek( $res, 0 );
+                  while($data=mysqli_fetch_assoc($res))
+                  {   if ($data['stage_name']=="unit_testing") {
+                      ?>
+                    <tr class="hhh">
+                                <td>
+                                    <?php 
+                               
+                                  echo $data['tool_name'];
+                                
+                                ?>
+
+                                </td>
+                                <td>
+                <a href="./?module=projects&page=deletedev&id=<?php echo $tmpid;?>&stage=<?php echo $data['stage_name'];?>&tool=<?php echo $data['tool_name'];?>">
+                  <button type="button" class="btn btn-warning">delete</button>
+                </a>
+              </td>
+                                </tr>
+                                    <?php 
+                  }
+               } ?>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+
+<!--degin info -->
+<div class="row" style="">
+        <div class="col-xs-8" style="width:60%">
+        </div>
+        <div class="col-xs-4" style="display:flex;flex-direction: row-reverse;justify-content: space-around;width:40%;">
+        </div>
+        <div class="col-xs-12">
+            <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>design</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <?php
+                    mysqli_data_seek( $res, 0 );
+                  while($data=mysqli_fetch_assoc($res))
+                  {   if ($data['stage_name']=="design") {
+                      ?>
+                       <tr class="hhh">
+                                <td>
+                                    <?php 
+                               
+                                  echo $data['tool_name'];
+                                
+                                ?>
+
+                                </td>
+                                <td>
+                <a href="./?module=projects&page=deletedev&id=<?php echo $tmpid;?>&stage=<?php echo $data['stage_name'];?>&tool=<?php echo $data['tool_name'];?>">
+                  <button type="button" class="btn btn-warning">delete</button>
+                </a>
+              </td>
+                                </tr>
+                                    <?php 
+                  }
+               } ?>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+<!--con_management info -->
+<div class="row" style="">
+        <div class="col-xs-8" style="width:60%">
+        </div>
+        <div class="col-xs-4" style="display:flex;flex-direction: row-reverse;justify-content: space-around;width:40%;">
+        </div>
+        <div class="col-xs-12">
+            <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>con_management</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <?php
+                    mysqli_data_seek( $res, 0 );
+                  while($data=mysqli_fetch_assoc($res))
+                  {   if ($data['stage_name']=="con_management") {
+                      ?>
+                       <tr class="hhh">
+                                <td>
+                                    <?php 
+                               
+                                  echo $data['tool_name'];
+                                
+                                ?>
+
+                                </td>
+                                <td>
+                <a href="./?module=projects&page=deletedev&id=<?php echo $tmpid;?>&stage=<?php echo $data['stage_name'];?>&tool=<?php echo $data['tool_name'];?>">
+                  <button type="button" class="btn btn-warning">delete</button>
+                </a>
+              </td>
+                                </tr>
+                                    <?php 
+                  }
+               } ?>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+<!--requirements info -->
+<div class="row" style="">
+        <div class="col-xs-8" style="width:60%">
+        </div>
+        <div class="col-xs-4" style="display:flex;flex-direction: row-reverse;justify-content: space-around;width:40%;">
+        </div>
+        <div class="col-xs-12">
+            <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>requirements</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <?php
+                    mysqli_data_seek( $res, 0 );
+                  while($data=mysqli_fetch_assoc($res))
+                  {   if ($data['stage_name']=="requirements") {
+                      ?>
+                       <tr class="hhh">
+                                <td>
+                                    <?php 
+                               
+                                  echo $data['tool_name'];
+                                
+                                ?>
+
+                                </td>
+                                <td>
+                <a href="./?module=projects&page=deletedev&id=<?php echo $tmpid;?>&stage=<?php echo $data['stage_name'];?>&tool=<?php echo $data['tool_name'];?>">
+                  <button type="button" class="btn btn-warning">delete</button>
+                </a>
+              </td>
+                                </tr>
+                                    <?php 
+                  }
+               } ?>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+<!--coding info -->
+<div class="row" style="">
+        <div class="col-xs-8" style="width:60%">
+        </div>
+        <div class="col-xs-4" style="display:flex;flex-direction: row-reverse;justify-content: space-around;width:40%;">
+        </div>
+        <div class="col-xs-12">
+            <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>coding</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <?php
+                    mysqli_data_seek( $res, 0 );
+                  while($data=mysqli_fetch_assoc($res))
+                  {   if ($data['stage_name']=="coding") {
+                      ?>
+                      <tr class="hhh">
+                                <td>
+                                    <?php 
+                               
+                                  echo $data['tool_name'];
+                                
+                                ?>
+
+                                </td>
+                                <td>
+                <a href="./?module=projects&page=deletedev&id=<?php echo $tmpid;?>&stage=<?php echo $data['stage_name'];?>&tool=<?php echo $data['tool_name'];?>">
+                  <button type="button" class="btn btn-warning">delete</button>
+                </a>
+              </td>
+                                </tr>
+                                    <?php 
+                  }
+               } ?>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
 
     <?php
 }else{
