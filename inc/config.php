@@ -206,40 +206,9 @@ if(!$query)
 echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
 
-$sql="INSERT  INTO `has` (`id`, `field_name`) VALUES
-(1, 'client side'),
-(2, 'client side'),
-(3, 'data base mangment'),
-(5, 'fullstack'),
-(7, 'meanstack'),
-(4, 'moblie'),
-(8, 'moblie'),
-(6, 'server side'),
-(9, 'unix'),
-(10, 'unix kernel');";
-$query=mysqli_query($conn,$sql);
-if(!$query)
-{
-echo "Error creating table: " . mysqli_error($conn)."<br>";
-}
 
-$sql="INSERT INTO `milestones` (`id`, `project_id`, `product_name`, `budget`, `datee`) VALUES
-(1, 1, 'first', 200000, '12/12/1999'),
-(2, 2, 'produ', 5220, '04/05/2001'),
-(3, 3, 'straming', 5515521, '12/12/1997'),
-(4, 4, 'ech srveer', 53456, '02/22/2005'),
-(5, 5, 'java', 252515, '01/04/1988'),
-(6, 6, 'wirless', 56454, '04/06/2007'),
-(7, 7, 'auto driveing', 4531, '12/08/2013'),
-(8, 8, 'social', 521111, '05/07/2009'),
-(9, 9, 'drive onlie ', 400000, '12/09/2001'),
-(10, 10, 'x linux', 1, '01/15/2018'),
-(11, 1, 'second', 2000000, '11/19/2012');";
-$query=mysqli_query($conn,$sql);
-if(!$query)
-{
-echo "Error creating table: " . mysqli_error($conn)."<br>";
-}
+
+
 
 $sql="INSERT  INTO `phone` (`phone`, `id`) VALUES
 (75867857, 1),
@@ -272,6 +241,24 @@ $sql="INSERT  INTO `projects` (`project_id`, `project_name`, `starting_time`, `c
 (9, 'mega drive', '06/06/1999', 'keli', 'cloud storage sulition'),
 (10, 'linux x', '08/08/2018', 'mahmod hasan', 'Linux destro our final project');
 ";
+$query=mysqli_query($conn,$sql);
+if(!$query)
+{
+echo "Error creating table: " . mysqli_error($conn)."<br>";
+}
+
+$sql="INSERT INTO `milestones` (`id`, `project_id`, `product_name`, `budget`, `datee`) VALUES
+(1, 1, 'first', 200000, '12/12/1999'),
+(2, 2, 'produ', 5220, '04/05/2001'),
+(3, 3, 'straming', 5515521, '12/12/1997'),
+(4, 4, 'ech srveer', 53456, '02/22/2005'),
+(5, 5, 'java', 252515, '01/04/1988'),
+(6, 6, 'wirless', 56454, '04/06/2007'),
+(7, 7, 'auto driveing', 4531, '12/08/2013'),
+(8, 8, 'social', 521111, '05/07/2009'),
+(9, 9, 'drive onlie ', 400000, '12/09/2001'),
+(10, 10, 'x linux', 1, '01/15/2018'),
+(11, 1, 'second', 2000000, '11/19/2012');";
 $query=mysqli_query($conn,$sql);
 if(!$query)
 {
@@ -330,7 +317,22 @@ if(!$query)
 {
 echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
-
+$sql="INSERT  INTO `has` (`id`, `field_name`) VALUES
+(1, 'client side'),
+(2, 'client side'),
+(3, 'data base mangment'),
+(5, 'fullstack'),
+(7, 'meanstack'),
+(4, 'moblie'),
+(8, 'moblie'),
+(6, 'server side'),
+(9, 'unix'),
+(10, 'unix kernel');";
+$query=mysqli_query($conn,$sql);
+if(!$query)
+{
+echo "Error creating table: " . mysqli_error($conn)."<br>";
+}
 $sql="INSERT  INTO `tools` (`id`, `tool_name`) VALUES
 (24, 'Asana'),
 (41, 'c'),
