@@ -13,8 +13,22 @@ if(isset($_GET['tool_id'])){
   $qury->bind_param("ii",$tool,$id);
   $result=$qury->execute();*/
   $tool_id=$_GET['tool_id'];
+  $tool_name=$_GET['tool_name'];
 //  $tool=$_POST['tool'];
 $project_id=$_GET['id'];
+mysqli_query($conn,"DROP TRIGGER before_delete_tool;");
+$trigger=" CREATE TRIGGER before_delete_tool BEFORE DELETE ON tools 
+FOR EACH ROW
+BEGIN 
+DELETE FROM development_stages WHERE tool_name='$tool_name';
+
+END;
+";
+ $trigger_result=mysqli_query($conn,$trigger);
+ if(!$trigger_result)
+ {
+      echo  mysqli_error($conn)."<br>";
+ }
 $sql="DELETE  FROM tools WHERE id='$tool_id' ";
 $result=mysqli_query($conn,$sql);
 
@@ -78,7 +92,7 @@ die;
 
               <td>
             
-                <a href="./?module=projects&page=deletetool&id=<?=$_GET['id']?>&tool_id=<?=$row['id']?>">
+                <a href="./?module=projects&page=deletetool&id=<?=$_GET['id']?>&tool_id=<?=$row['id']?>&tool_name=<?=$row['tool_name'];?>">
                  <button   name="tool_btn" class="btn btn-warning">delete</button>
                 </a>
               </td>

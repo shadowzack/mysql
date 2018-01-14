@@ -101,22 +101,7 @@ if(!$query)
 {
     echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
-/*
-//#################development_stages##############
-$sql="CREATE TABLE IF NOT EXISTS development_stages (
-    project_id INT(60) UNSIGNED PRIMARY KEY,
-    tests VARCHAR(30) ,
-    design VARCHAR(100),
-    con_management VARCHAR(60),
-    requirements VARCHAR(60),
-    coding VARCHAR(60),
-    FOREIGN KEY (project_id) REFERENCES projects(project_id)  )";
-    $query=mysqli_query($conn,$sql);
-if(!$query)
-{
-    echo "Error creating table: " . mysqli_error($conn)."<br>";
-}
-*/
+
 
 $sql="CREATE TABLE IF NOT EXISTS stages (
     id INT(60) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -186,13 +171,24 @@ if(!$query)
 echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
 
-
+$sql="INSERT IGNORE INTO `stages` (`id`, `stage_name`) VALUES
+(6, 'coding'),
+(4, 'con_management'),
+(3, 'design'),
+(5, 'requirements'),
+(1, 'tests'),
+(2, 'unit_testing');";
+$query=mysqli_query($conn,$sql);
+if(!$query)
+{
+echo "Error creating table: " . mysqli_error($conn)."<br>";
+}
 
 if(!isset($_COOKIE['lg'])) {
    
 
 
-$sql="INSERT IGNORE INTO `engineer` (`id`, `firstname`, `lastname`, `addresss`, `age`, `birthdate`) VALUES
+$sql="INSERT  INTO `engineer` (`id`, `firstname`, `lastname`, `addresss`, `age`, `birthdate`) VALUES
 (1, 'mahmod', 'hasan', 'haifa', 20, '06/19/1997'),
 (2, 'avi', 'ytsak', 'tel-aviv', 27, '12/12/1990'),
 (3, 'jolyana', 'bder', 'tira', 24, '12/11/1993'),
@@ -210,7 +206,7 @@ if(!$query)
 echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
 
-$sql="INSERT IGNORE INTO `has` (`id`, `field_name`) VALUES
+$sql="INSERT  INTO `has` (`id`, `field_name`) VALUES
 (1, 'client side'),
 (2, 'client side'),
 (3, 'data base mangment'),
@@ -227,24 +223,25 @@ if(!$query)
 echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
 
-$sql="INSERT IGNORE INTO `milestones` (`id`,`project_id`, `product_name`, `budget`, `datee`) VALUES
-(1,1, 'pp', 200000, '12/12/1999'),
-(2,2, 'produ', 5220, '04/05/2001'),
-(3,3, 'straming', 5515521, '12/12/1997'),
-(4,4, 'ech srveer', 53456, '02/22/2005'),
-(5,5,'java', 252515, '01/04/1988'),
-(6,6, 'wirless', 56454, '04/06/2007'),
-(7,7, 'auto driveing', 4531, '12/08/2013'),
-(8,8, 'social', 521111, '05/07/2009'),
-(9, 9,'drive onlie ', 400000, '12/09/2001'),
-(10,10, 'x linux', 1, '01/15/2018');";
+$sql="INSERT INTO `milestones` (`id`, `project_id`, `product_name`, `budget`, `datee`) VALUES
+(1, 1, 'first', 200000, '12/12/1999'),
+(2, 2, 'produ', 5220, '04/05/2001'),
+(3, 3, 'straming', 5515521, '12/12/1997'),
+(4, 4, 'ech srveer', 53456, '02/22/2005'),
+(5, 5, 'java', 252515, '01/04/1988'),
+(6, 6, 'wirless', 56454, '04/06/2007'),
+(7, 7, 'auto driveing', 4531, '12/08/2013'),
+(8, 8, 'social', 521111, '05/07/2009'),
+(9, 9, 'drive onlie ', 400000, '12/09/2001'),
+(10, 10, 'x linux', 1, '01/15/2018'),
+(11, 1, 'second', 2000000, '11/19/2012');";
 $query=mysqli_query($conn,$sql);
 if(!$query)
 {
 echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
 
-$sql="INSERT IGNORE INTO `phone` (`phone`, `id`) VALUES
+$sql="INSERT  INTO `phone` (`phone`, `id`) VALUES
 (75867857, 1),
 (4294967295, 1),
 (665546, 2),
@@ -263,7 +260,7 @@ if(!$query)
 echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
 
-$sql="INSERT IGNORE INTO `projects` (`project_id`, `project_name`, `starting_time`, `customer_name`, `taoor`) VALUES
+$sql="INSERT  INTO `projects` (`project_id`, `project_name`, `starting_time`, `customer_name`, `taoor`) VALUES
 (1, 'web os', '11/11/2000', 'yoni', 'web opreation system'),
 (2, 'virtual one', '12/05/2005', 'noamn', 'windows virtual os'),
 (3, 'x stramer', '03/12/2007', 'amer', 'online stramer for web aplications'),
@@ -281,7 +278,7 @@ if(!$query)
 echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
 
-$sql="INSERT IGNORE INTO `software_field` (`id`, `field_name`, `expertise`) VALUES
+$sql="INSERT  INTO `software_field` (`id`, `field_name`, `expertise`) VALUES
 (1, 'web', 'low'),
 (2, 'unix', 'low'),
 (3, 'fullstack', 'hight'),
@@ -299,7 +296,7 @@ echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
 
 
-$sql="INSERT IGNORE INTO `works` (`project_id`, `engineer_id`, `grade`) VALUES
+$sql="INSERT  INTO `works` (`project_id`, `engineer_id`, `grade`) VALUES
 (1, 1, 7),
 (1, 2, 1),
 (1, 5, 4),
@@ -328,6 +325,64 @@ $sql="INSERT IGNORE INTO `works` (`project_id`, `engineer_id`, `grade`) VALUES
 (8, 9, 8),
 (9, 1, 5),
 (10, 1, 6);";
+$query=mysqli_query($conn,$sql);
+if(!$query)
+{
+echo "Error creating table: " . mysqli_error($conn)."<br>";
+}
+
+$sql="INSERT  INTO `tools` (`id`, `tool_name`) VALUES
+(24, 'Asana'),
+(41, 'c'),
+(45, 'client side'),
+(35, 'codeblocks'),
+(31, 'doors'),
+(34, 'eclipse'),
+(23, 'Github'),
+(36, 'intellgie'),
+(32, 'jira'),
+(30, 'junit'),
+(39, 'klocwork'),
+(40, 'lint'),
+(43, 'linux'),
+(28, 'Machine learning'),
+(37, 'nunit'),
+(38, 'quality center'),
+(44, 'server side'),
+(25, 'Swift'),
+(47, 'ui'),
+(29, 'unit'),
+(42, 'unix'),
+(46, 'ux'),
+(33, 'visual');";
+$query=mysqli_query($conn,$sql);
+if(!$query)
+{
+echo "Error creating table: " . mysqli_error($conn)."<br>";
+}
+
+
+
+$sql="INSERT INTO `development_stages` (`id`, `project_id`, `stage_name`, `tool_name`) VALUES
+(1, 1, 'tests', 'lint'),
+(2, 1, 'unit_testing', 'junit'),
+(3, 1, 'design', 'client side'),
+(4, 1, 'con_management', 'Github'),
+(5, 1, 'requirements', 'doors'),
+(6, 1, 'coding', 'eclipse'),
+(7, 1, 'tests', 'jira'),
+(8, 1, 'unit_testing', 'unit'),
+(9, 1, 'design', 'server side'),
+(10, 1, 'coding', 'intellgie'),
+(11, 1, 'tests', 'Asana'),
+(12, 2, 'tests', 'klocwork'),
+(13, 2, 'unit_testing', 'junit'),
+(14, 2, 'design', 'linux'),
+(15, 2, 'con_management', 'jira'),
+(16, 2, 'requirements', 'Machine learning'),
+(17, 2, 'coding', 'visual'),
+(18, 2, 'coding', 'c'),
+(19, 2, 'unit_testing', 'nunit');";
 $query=mysqli_query($conn,$sql);
 if(!$query)
 {
