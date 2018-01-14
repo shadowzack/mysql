@@ -16,8 +16,7 @@ if(!$db_selected){
 }
 
 //creating tables if not exists --------------------------------------------------------------------------------------------------------------------------------------------
-
-
+//if (!isset($_COOKIE["dbstart"])) {
 //###################ENGINEER############################
 $sql="CREATE TABLE IF NOT EXISTS engineer (
     id INT(60) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
@@ -189,25 +188,10 @@ echo "Error creating table: " . mysqli_error($conn)."<br>";
 
 
 
-/*
-$sql="INSERT INTO `development_stages` (`project_id`, `tests`, `design`, `con_management`, `requirements`, `coding`) VALUES
-(1, 'visual', 'mvc', 'git', 'server side', 'c'),
-(2, 'vsiual', 'oop', 'git', 'server clinet', 'php mysl'),
-(3, 'code blocks', 'oop', 'git bash', 'linux', 'c,c++'),
-(4, 'vs code', 'mvc', 'srver echo', 'linux', 'php'),
-(5, 'eclipse', 'play framework', 'git', 'scala', 'scala java'),
-(6, 'xcode', 'nfc', 'github', 'nfc compatible', 'swift java'),
-(7, 'street of curse', 'sensor api', 'git lib', 'sensor machine learing', 'any'),
-(8, 'atom', 'mvc', 'git hub', 'server clint', 'php mysql '),
-(9, 'visual', 'mvc', 'git lib phmyadmin', 'storage server', 'php mysql'),
-(10, 'no test ', 'unix bsd', 'command', 'unix knoledge', 'c');
-";
-$query=mysqli_query($conn,$sql);
-if(!$query)
-{
-echo "Error creating table: " . mysqli_error($conn)."<br>";
-}
-*/
+if(!isset($_COOKIE['lg'])) {
+   
+
+
 $sql="INSERT IGNORE INTO `engineer` (`id`, `firstname`, `lastname`, `addresss`, `age`, `birthdate`) VALUES
 (1, 'mahmod', 'hasan', 'haifa', 20, '06/19/1997'),
 (2, 'avi', 'ytsak', 'tel-aviv', 27, '12/12/1990'),
@@ -350,4 +334,8 @@ if(!$query)
 echo "Error creating table: " . mysqli_error($conn)."<br>";
 }
 
+
+setcookie('lg', 'ro',time()+31556926 ,'/');
+$_COOKIE['lg'] = 'ro';
+}
 ?>

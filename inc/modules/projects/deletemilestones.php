@@ -2,7 +2,7 @@
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
   $id_main=$_GET['id_main'];
-$sql="DELETE FROM milestones WHERE id=$id_main";
+$sql="DELETE FROM milestones WHERE id=$id_main AND project_id=$id";
 $result=mysqli_query($conn,$sql);
 
  if($result)

@@ -1,8 +1,8 @@
 <?php
-if(isset($_POST['delete_btn'])){
+if(isset($_GET['project_id'])){
      
 
-  $project_id=$_POST['project_id'];
+  $project_id=$_GET['project_id'];
 
   $id=$_GET['id'];
 
@@ -39,7 +39,7 @@ die;
     <h2>
       delete project_id number
     </h2>
-    <form method="POST" action="./?module=engineer&page=deleteproject&id=<?=$_GET['id']?>">
+    <!--<form method="POST" action="./?module=engineer&page=deleteproject&id=<?=$_GET['id']?>">-->
 
       <div class="form-group">
         <?php
@@ -71,14 +71,16 @@ die;
           <td>
                 <?=$row['project_name'];?>
               </td>
-            <td name="">
-            <input type="hidden" name="project_id" value=" <?=$row['project_id']?>">
+            <td >
+           
             <?=$row['project_id']?>
             </td>
               <td>
              
-                 <button type="submit"  name="delete_btn" class="btn btn-warning">delete</button>
-              
+                 
+                 <a href="./?module=engineer&page=deleteproject&id=<?=$_GET['id']?>&project_id=<?=$row['project_id']?>">
+                 <button   name="delete_btn" class="btn btn-warning">delete</button>
+                </a>
               </td>
               </tr>
       
@@ -97,6 +99,6 @@ die;
     
 
 
-    </form>
+    <!--</form>-->
   </div>
 </div>

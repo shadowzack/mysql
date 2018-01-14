@@ -3,7 +3,7 @@
 
 
 <?php
-if(isset($_POST['tool_btn'])){
+if(isset($_GET['tool_id'])){
      
  //mysqli_autocommit($conn,FALSE);
  /* $sql="DELETE FROM tool WHERE tool=? AND id=?";
@@ -12,11 +12,10 @@ if(isset($_POST['tool_btn'])){
     $tool=$_POST['tool'];
   $qury->bind_param("ii",$tool,$id);
   $result=$qury->execute();*/
-  $tool=$_POST['tool_id'];
- $id=$_GET['id'];
+  $tool_id=$_GET['tool_id'];
 //  $tool=$_POST['tool'];
-echo $tool;
-$sql="DELETE  FROM tools WHERE id=$tool ";
+$project_id=$_GET['id'];
+$sql="DELETE  FROM tools WHERE id='$tool_id' ";
 $result=mysqli_query($conn,$sql);
 
 if(!$result)
@@ -51,7 +50,7 @@ die;
     <h2>
       delete tool number
     </h2>
-    <form method="POST" action="./?module=projects&page=deletetool&id=<?=$_GET['id']?>">
+    <!--<form method="POST" action="./?module=projects&page=deletetool&id=<?=$_GET['id']?>">-->
 
       <div class="form-group">
         <?php
@@ -75,14 +74,12 @@ die;
                 <?=$row['tool_name'];?>
               </td>
 
-              <td name="">
-            <input type="hidden" name="tool_id" value=" <?=$row['id']?>">
-            </td>
+             
 
               <td>
             
-                <a href="./?module=projects&page=deletetool&id=<?=$_GET['id']?>&tool_id=<?php echo $row['id'];?>">
-                 <button type="submit"  name="tool_btn" class="btn btn-warning">delete</button>
+                <a href="./?module=projects&page=deletetool&id=<?=$_GET['id']?>&tool_id=<?=$row['id']?>">
+                 <button   name="tool_btn" class="btn btn-warning">delete</button>
                 </a>
               </td>
               </tr>
@@ -99,6 +96,6 @@ die;
     
 
 
-    </form>
+    <!--</form>-->
   </div>
 </div>

@@ -74,13 +74,21 @@ die;
             }
 
 
-            $sql="SELECT * FROM tools";
+            $sql="SELECT tools.tool_name
+                   FROM tools 
+                   WHERE tools.tool_name  NOT IN (SELECT  tools.tool_name
+                   FROM tools
+                   INNER JOIN development_stages
+                   ON tools.tool_name=development_stages.tool_name
+                   WHERE  project_id='{$_GET['id']}'
+                   GROUP BY development_stages.tool_name)
+            ";
            $res_tool=mysqli_query($conn,$sql);
             ?>
                 <form method="POST" action="./?module=projects&page=adddev&id=<?=$_GET['id'];?>">
                     <div class="form-group">
                         <label for="tests">
-                            <?=$arr[0]?>:</label>
+                        tests:</label>
                         <select name="tests" class="form-control">
                             <option value="" disabled selected hidden>choose tool...</option>
                             <?php
